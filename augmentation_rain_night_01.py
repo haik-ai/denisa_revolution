@@ -48,7 +48,7 @@ def add_horizontal_oval_glow(image, center=None, rx=600, ry=250, strength=1.4):
 rain_aug = A.Compose([
     A.RandomRain(
         brightness_coefficient=0.9,  # slightly darken the image
-        slant_lower=-45, slant_upper=45,
+        slant_range=(-45, 45),
         drop_width=1, drop_length=50,
         blur_value=10,
         rain_type="heavy",
@@ -89,12 +89,12 @@ def augment_image(image):
 # 2. Dataset Expansion
 # =========================
 
-images_folder = "Augmentation 01\\data_30\\test\\images"
-labels_folder = "Augmentation 01\\data_30\\test\\labels"
+images_folder = "Augmentation_01\\data_null_30\\test\\images"
+labels_folder = "Augmentation_01\\data_null_30\\test\\labels"
 
 # Get all image paths in the folder
 image_paths = glob.glob(os.path.join(images_folder, "*.*"))  # adjust pattern if needed
-num_to_augment = len(image_paths) // 2  # augment ~33% of images
+num_to_augment = len(image_paths) // 3  # augment ~33% of images
 
 # Randomly select images for augmentation
 images_to_augment = random.sample(image_paths, num_to_augment)
